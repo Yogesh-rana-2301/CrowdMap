@@ -44,10 +44,10 @@ jobs:
       matrix:
         include:
           - language: python
-            build-mode: autobuild
+            build-mode: none
           # Analyze Go code
           - language: javascript-typescript
-            build-mode: autobuild
+            build-mode: none
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
