@@ -15,7 +15,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-"""Helper Functions  """
+# Helper Functions  
 def get_crowd_status(count, high_risk_threshold=61, crowded_threshold=30):
     """Classifies crowd status based on count and returns status and color."""
     if count >= high_risk_threshold:
