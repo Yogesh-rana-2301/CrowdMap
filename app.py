@@ -1,7 +1,6 @@
 import streamlit as st
 import cv2
 import tempfile
-import time
 from src.detection.detector import YOLOCrowdDetector
 from src.mapping.heatmap import HeatmapGenerator
 import numpy as np
@@ -109,12 +108,4 @@ def main():
         st.info("Webcam feed stopped.")
 
 if __name__ == '__main__':
-    if 'last_ping' not in st.session_state:
-        st.session_state.last_ping = time.time()
-
     main()
-
-    # Ping to keep the app alive
-    if time.time() - st.session_state.last_ping > 240:  # Ping every 4 minutes
-        st.session_state.last_ping = time.time()
-        st.rerun()
