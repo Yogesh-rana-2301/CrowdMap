@@ -109,7 +109,7 @@ def main():
             video_placeholder.image(frame_with_detections, channels="BGR")
 
             # Small delay to prevent browser from crashing
-            cv2.waitKey(1)
+            # cv2.waitKey(1)
 
         cap.release()
     elif source_option == "Webcam" and stop_button:
