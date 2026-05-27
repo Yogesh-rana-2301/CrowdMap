@@ -31,7 +31,15 @@ def main():
 
     # Sidebar 
     st.sidebar.header("Input Options")
-    source_option = st.sidebar.radio("Select Source", ("Upload Video", "Webcam"))
+    
+    # Disable webcam in cloud
+    try:
+        if 'WEBCAM_DISABLED' in st.secrets:
+            source_option = st.sidebar.radio("Select Source", ("Upload Video",))
+        else:
+            source_option = st.sidebar.radio("Select Source", ("Upload Video", "Webcam"))
+    except Exception:
+        source_option = st.sidebar.radio("Select Source", ("Upload Video", "Webcam"))
 
     confidence_threshold = st.sidebar.slider("Confidence Threshold", 0.0, 1.0, 0.5, 0.05)
     

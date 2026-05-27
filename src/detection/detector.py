@@ -1,6 +1,3 @@
-import cv2
-from ultralytics import YOLO
-
 class YOLOCrowdDetector:
     """
     A class for detecting and counting people in images or video frames using YOLOv8.
@@ -12,6 +9,7 @@ class YOLOCrowdDetector:
         Args:
             model_path (str): Path to the YOLOv8 model file. Defaults to 'yolov8n.pt', a small and fast model.
         """
+        from ultralytics import YOLO
         self.model = YOLO(model_path)
         # The 'person' class is index 0 in the COCO dataset, which YOLOv8 is trained on.
         self.person_class_index = 0
@@ -53,42 +51,43 @@ class YOLOCrowdDetector:
         Returns:
             The frame with bounding boxes drawn on it.
         """
+        import cv2
         for box in bounding_boxes:
             x1, y1, x2, y2 = map(int, box)
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
         
         return frame
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    detector = YOLOCrowdDetector()
+#     detector = YOLOCrowdDetector()
 
-    cap = cv2.VideoCapture(0) 
+#     cap = cv2.VideoCapture(0) 
 
-    if not cap.isOpened():
-        print("Error: Could not open video source.")
-    else:
-        while cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
+#     if not cap.isOpened():
+#         print("Error: Could not open video source.")
+#     else:
+#         while cap.isOpened():
+#             ret, frame = cap.read()
+#             if not ret:
+#                 break
 
-            # Detect crowds
-            boxes, count = detector.detect_crowds(frame)
+#             # Detect crowds
+#             boxes, count = detector.detect_crowds(frame)
 
-            # Draw detections on the frame
-            frame_with_detections = detector.draw_detections(frame, boxes)
+#             # Draw detections on the frame
+#             frame_with_detections = detector.draw_detections(frame, boxes)
 
-            # Display the count on the frame
-            cv2.putText(frame_with_detections, f'People Count: {count}', (10, 30), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+#             # Display the count on the frame
+#             cv2.putText(frame_with_detections, f'People Count: {count}', (10, 30), 
+#                         cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-            # Show the frame
-            cv2.imshow('Crowd Detection', frame_with_detections)
+#             # Show the frame
+#             cv2.imshow('Crowd Detection', frame_with_detections)
 
-            # Break the loop if 'q' is pressed
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+#             # Break the loop if 'q' is pressed
+#             if cv2.waitKey(1) & 0xFF == ord('q'):
+#                 break
 
-        cap.release()
-        cv2.destroyAllWindows()
+#         cap.release()
+#         cv2.destroyAllWindows()
