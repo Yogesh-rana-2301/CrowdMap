@@ -23,6 +23,11 @@
 
 CrowdMap is an open-source project designed to **prevent stampedes and ensure public safety** by monitoring people density in real-time. Our system provides crucial crowd intelligence for malls, hospitals, religious gatherings, stadiums, festivals, parades, and public events.
 
+## Demo video
+
+<img width="1440" height="726" alt="Image" src="https://github.com/user-attachments/assets/af98dc6c-aa70-4d38-adf5-ce5466b86f91" />  
+
+
 ##  Features
 
 ###  Current (MVP)
